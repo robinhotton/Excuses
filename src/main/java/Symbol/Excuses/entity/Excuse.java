@@ -1,5 +1,7 @@
 package Symbol.Excuses.entity;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,6 +10,9 @@ public class Excuse {
 	private @Id int httpCode;
     private String tag;
     private String message;
+    
+    public Excuse() {
+    }
 
     public Excuse(int httpCode, String tag, String message) {
         this.httpCode = httpCode;
@@ -43,11 +48,13 @@ public class Excuse {
         if (this == object) return true;
         if (!(object instanceof Excuse)) return false;
         Excuse excuse = (Excuse) object;
-        return getHttpCode() == excuse.getHttpCode() && getTag().equals(excuse.getTag()) && getMessage().equals(excuse.getMessage());
+        return Objects.equals(this.getHttpCode(), excuse.getHttpCode())
+        		&& Objects.equals(this.getTag(), excuse.getTag())
+        		&& Objects.equals(this.getMessage(), excuse.getMessage());
     }
 
     public int hashCode() {
-        return java.util.Objects.hash(super.hashCode(), getHttpCode(), getTag(), getMessage());
+        return Objects.hash(this.getHttpCode(), this.getTag(), this.getMessage());
     }
 
     @Override
