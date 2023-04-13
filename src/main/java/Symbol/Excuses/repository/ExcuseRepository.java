@@ -6,4 +6,4 @@ import org.springframework.stereotype.Repository;
 import Symbol.Excuses.entity.Excuse;
 
 @Repository
-public interface ExcuseRepository extends JpaRepository<Excuse, Long>{}
+public interface ExcuseRepository extends JpaRepository<Excuse, Integer>{}
