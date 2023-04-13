@@ -42,7 +42,6 @@ public class Excuse {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof Excuse)) return false;
-        if (!super.equals(object)) return false;
         Excuse excuse = (Excuse) object;
         return getHttpCode() == excuse.getHttpCode() && getTag().equals(excuse.getTag()) && getMessage().equals(excuse.getMessage());
     }
@@ -53,10 +52,9 @@ public class Excuse {
 
     @Override
     public String toString() {
-        return "Excuse{" +
-                "httpCode=" + httpCode +
-                ", tag='" + tag + '\'' +
-                ", message='" + message + '\'' +
-                '}';
+        return "{\"http_code\" : " + httpCode +
+                ",\"tag \": \"" + tag +
+                "\",\"message \":\" " + message +
+                "\"}";
     }
 }
