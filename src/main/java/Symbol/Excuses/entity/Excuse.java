@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Excuse {
-    private @Id int httpCode;
+	private @Id int httpCode;
     private String tag;
     private String message;
 
