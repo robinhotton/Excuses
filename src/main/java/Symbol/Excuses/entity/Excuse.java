@@ -1,10 +1,11 @@
 package Symbol.Excuses.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Excuse {
-    private int httpCode;
+    private @Id int httpCode;
     private String tag;
     private String message;
 
