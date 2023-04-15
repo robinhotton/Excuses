@@ -44,7 +44,7 @@ public class ExcuseController {
 		return CollectionModel.of(excuse, linkTo(methodOn(ExcuseController.class).getAllExcuses()).withSelfRel());
 	}
 
-	@GetMapping("/excuse/{httpCode}")
+	@GetMapping("/excuse/{id}")
 	public EntityModel<Excuse> getExcuseByHttpCode(@PathVariable int httpCode) {
 		Excuse excuse = repository.findById(httpCode).orElseThrow(() -> new ExcuseNotFoundException(httpCode));
 

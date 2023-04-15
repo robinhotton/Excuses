@@ -39,6 +39,7 @@ public class LoadDatabaseWithJson {
 					List<Excuse> excuses = objectMapper.readValue(inputStream, new TypeReference<List<Excuse>>() {
 					});
 					for(Excuse excuse: excuses) {
+						log.info("Preloaded " + excuse + "...");
 						repo.save(excuse);
 					}
 				} catch (IOException e1) {
