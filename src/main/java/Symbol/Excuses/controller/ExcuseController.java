@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -44,11 +46,12 @@ public class ExcuseController {
 		return CollectionModel.of(excuse, linkTo(methodOn(ExcuseController.class).getAllExcuses()).withSelfRel());
 	}
 
-	@GetMapping("/excuse/{id}")
+	@GetMapping("/excuse/{httpCode}")
 	public EntityModel<Excuse> getExcuseByHttpCode(@PathVariable int httpCode) {
-		Excuse excuse = repository.findById(httpCode).orElseThrow(() -> new ExcuseNotFoundException(httpCode));
+	    Excuse excuse = repository.findById(httpCode)
+	            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Excuse not found"));
 
-		return assembler.toModel(excuse);
+	    return assembler.toModel(excuse);
 	}
 
 	@PostMapping("/excuse")
@@ -58,7 +61,7 @@ public class ExcuseController {
 		return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()).body(entityModel);
 	}
 
-	@PutMapping("/excuse/{id}")
+	@PutMapping("/excuse/{httpCode}")
     public ResponseEntity<?> modifierExcuse(@RequestBody Excuse nouvelleExcuse, @PathVariable int httpCode) {
     	Excuse updatedExcuse = repository.findById(httpCode)
                 .map(excuse -> {
@@ -77,7 +80,7 @@ public class ExcuseController {
                 .body(entityModel);
     }
 
-	@DeleteMapping("/excuse/{id}")
+	@DeleteMapping("/excuse/{httpCode}")
 	public ResponseEntity<?> SupprimerExcuse(@PathVariable int httpCode) {
 		repository.deleteById(httpCode);
 		return ResponseEntity.noContent().build();
