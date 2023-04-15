@@ -2,66 +2,70 @@ package Symbol.Excuses.entity;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class Excuse {
-	private @Id int httpCode;
-    private String tag;
-    private String message;
-    
-    public Excuse() {
-    }
+	
+	@Id
+	@JsonProperty("http_code")
+	private int httpCode;
+	private String tag;
+	private String message;
 
-    public Excuse(int httpCode, String tag, String message) {
-        this.httpCode = httpCode;
-        this.tag = tag;
-        this.message = message;
-    }
+	public Excuse() {
+	}
 
-    public int getHttpCode() {
-        return httpCode;
-    }
+	public Excuse(int httpCode, String tag, String message) {
+		this.httpCode = httpCode;
+		this.tag = tag;
+		this.message = message;
+	}
 
-    public void setHttpCode(int httpCode) {
-        this.httpCode = httpCode;
-    }
+	public int getHttpCode() {
+		return httpCode;
+	}
 
-    public String getTag() {
-        return tag;
-    }
+	public void setHttpCode(int httpCode) {
+		this.httpCode = httpCode;
+	}
 
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
+	public String getTag() {
+		return tag;
+	}
 
-    public String getMessage() {
-        return message;
-    }
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+	public String getMessage() {
+		return message;
+	}
 
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof Excuse)) return false;
-        Excuse excuse = (Excuse) object;
-        return Objects.equals(this.getHttpCode(), excuse.getHttpCode())
-        		&& Objects.equals(this.getTag(), excuse.getTag())
-        		&& Objects.equals(this.getMessage(), excuse.getMessage());
-    }
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
-    public int hashCode() {
-        return Objects.hash(this.getHttpCode(), this.getTag(), this.getMessage());
-    }
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (!(object instanceof Excuse))
+			return false;
+		Excuse excuse = (Excuse) object;
+		return Objects.equals(this.getHttpCode(), excuse.getHttpCode())
+				&& Objects.equals(this.getTag(), excuse.getTag())
+				&& Objects.equals(this.getMessage(), excuse.getMessage());
+	}
 
-    @Override
-    public String toString() {
-        return "{\"http_code\" : " + httpCode +
-                ",\"tag \": \"" + tag +
-                "\",\"message \":\" " + message +
-                "\"}";
-    }
+	public int hashCode() {
+		return Objects.hash(this.getHttpCode(), this.getTag(), this.getMessage());
+	}
+	
+	@Override
+	public String toString() {
+		return "{\"http_code\": " + httpCode + ", \"tag\": \"" + tag + "\", \"message\": \"" + message + "\"}";
+	}
 }
