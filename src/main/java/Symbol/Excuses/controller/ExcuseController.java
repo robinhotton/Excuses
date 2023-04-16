@@ -22,7 +22,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import Symbol.Excuses.ExcuseModelAssembler;
-import Symbol.Excuses.ExcuseNotFoundException;
 import Symbol.Excuses.entity.Excuse;
 import Symbol.Excuses.repository.ExcuseRepository;
 
