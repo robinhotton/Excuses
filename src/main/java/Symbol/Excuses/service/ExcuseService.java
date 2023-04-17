@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import Symbol.Excuses.entity.Excuse;
 import Symbol.Excuses.repository.ExcuseRepository;
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ExcuseService {
@@ -32,7 +31,7 @@ public class ExcuseService {
 	// UPDATE
 	public Excuse updateExcuse(int httpCode, Excuse newExcuse) {
 		Excuse existingExcuse = excuseRepository.findById(httpCode)
-				.orElseThrow(() -> new EntityNotFoundException("Excuse not found"));
+				.orElse(this.createExcuse(new Excuse(httpCode, newExcuse.getTag(), newExcuse.getMessage())));
 		existingExcuse.setTag(newExcuse.getTag());
 		existingExcuse.setMessage(newExcuse.getMessage());
 		return excuseRepository.save(existingExcuse);
