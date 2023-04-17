@@ -16,6 +16,13 @@ public class Excuse {
 	private String tag;
 	private String message;
 
+	/**
+	 * Le constructeur vide est obligatoire pour que Spring-Boot puisse instancier
+	 * cette classe à partir des résultats de la requête de la base de données.
+	 * 
+	 * Si la classe ne possède pas de constructeur vide, une exception sera lancée
+	 * lors de la tentative d'instanciation de l'entité.
+	 */
 	public Excuse() {
 	}
 

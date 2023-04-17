@@ -15,19 +15,21 @@ public class ExcuseService {
 	@Autowired
 	private ExcuseRepository excuseRepository;
 
+	// CREATE
 	public Excuse createExcuse(Excuse excuse) {
 		return excuseRepository.save(excuse);
 	}
 
+	// READ
 	public List<Excuse> getAllExcuses() {
 		return excuseRepository.findAll();
 	}
 
 	public Excuse getExcuseByHttpCode(int httpCode) {
 		return excuseRepository.findById(httpCode).orElse(null);
-
 	}
 
+	// UPDATE
 	public Excuse updateExcuse(int httpCode, Excuse newExcuse) {
 		Excuse existingExcuse = excuseRepository.findById(httpCode)
 				.orElseThrow(() -> new EntityNotFoundException("Excuse not found"));
@@ -36,6 +38,7 @@ public class ExcuseService {
 		return excuseRepository.save(existingExcuse);
 	}
 
+	// DELETE
 	public void deleteExcuseById(int httpCode) {
 		excuseRepository.deleteById(httpCode);
 	}
