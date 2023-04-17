@@ -11,31 +11,32 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ExcuseService {
-	
+
 	@Autowired
-    private ExcuseRepository excuseRepository;
+	private ExcuseRepository excuseRepository;
 
-    public Excuse createExcuse(Excuse excuse) {
-        return excuseRepository.save(excuse);
-    }
+	public Excuse createExcuse(Excuse excuse) {
+		return excuseRepository.save(excuse);
+	}
 
-    public List<Excuse> getAllExcuses() {
-        return excuseRepository.findAll();
-    }
+	public List<Excuse> getAllExcuses() {
+		return excuseRepository.findAll();
+	}
 
-    public Excuse getExcuseByHttpCode(int httpCode) {
-    	return excuseRepository.findById(httpCode).orElse(null);
+	public Excuse getExcuseByHttpCode(int httpCode) {
+		return excuseRepository.findById(httpCode).orElse(null);
 
-    }
+	}
 
-    public Excuse updateExcuse(int httpCode, Excuse newExcuse) {
-        Excuse existingExcuse = excuseRepository.findById(httpCode).orElseThrow(() -> new EntityNotFoundException("Excuse not found"));
-        existingExcuse.setTag(newExcuse.getTag());
-        existingExcuse.setMessage(newExcuse.getMessage());
-        return excuseRepository.save(existingExcuse);
-    }
+	public Excuse updateExcuse(int httpCode, Excuse newExcuse) {
+		Excuse existingExcuse = excuseRepository.findById(httpCode)
+				.orElseThrow(() -> new EntityNotFoundException("Excuse not found"));
+		existingExcuse.setTag(newExcuse.getTag());
+		existingExcuse.setMessage(newExcuse.getMessage());
+		return excuseRepository.save(existingExcuse);
+	}
 
-    public void deleteExcuseById(int httpCode) {
-        excuseRepository.deleteById(httpCode);
-    }
+	public void deleteExcuseById(int httpCode) {
+		excuseRepository.deleteById(httpCode);
+	}
 }

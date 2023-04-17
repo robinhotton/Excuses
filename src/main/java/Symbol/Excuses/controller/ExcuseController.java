@@ -20,70 +20,70 @@ import Symbol.Excuses.service.ExcuseService;
 @RequestMapping("/excuses")
 public class ExcuseController {
 
-    @Autowired
-    private ExcuseService excuseService;
+	@Autowired
+	private ExcuseService excuseService;
 
-    // CREATE
-    @PostMapping
-    public ResponseEntity<Excuse> createExcuse(@RequestBody Excuse excuse) {
-        try {
-            Excuse createdExcuse = excuseService.createExcuse(excuse);
-            return new ResponseEntity<>(createdExcuse, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	// CREATE
+	@PostMapping
+	public ResponseEntity<Excuse> createExcuse(@RequestBody Excuse excuse) {
+		try {
+			Excuse createdExcuse = excuseService.createExcuse(excuse);
+			return new ResponseEntity<>(createdExcuse, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    // READ
-    @GetMapping("/{httpCode}")
-    public ResponseEntity<Excuse> getExcuseByHttpCode(@PathVariable("httpCode") int httpCode) {
-        try {
-            Excuse excuse = excuseService.getExcuseByHttpCode(httpCode);
-            if (excuse == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(excuse, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	// READ
+	@GetMapping("/{httpCode}")
+	public ResponseEntity<Excuse> getExcuseByHttpCode(@PathVariable("httpCode") int httpCode) {
+		try {
+			Excuse excuse = excuseService.getExcuseByHttpCode(httpCode);
+			if (excuse == null) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<>(excuse, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    @GetMapping
-    public ResponseEntity<List<Excuse>> getAllExcuses() {
-        try {
-            List<Excuse> excuses = excuseService.getAllExcuses();
-            if (excuses.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(excuses, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	@GetMapping
+	public ResponseEntity<List<Excuse>> getAllExcuses() {
+		try {
+			List<Excuse> excuses = excuseService.getAllExcuses();
+			if (excuses.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(excuses, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    // UPDATE
-    @PutMapping("/{httpCode}")
-    public ResponseEntity<Excuse> updateExcuse(@PathVariable("httpCode") int httpCode, @RequestBody Excuse excuse) {
-        try {
-            Excuse updatedExcuse = excuseService.updateExcuse(httpCode, excuse);
-            if (updatedExcuse == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(updatedExcuse, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	// UPDATE
+	@PutMapping("/{httpCode}")
+	public ResponseEntity<Excuse> updateExcuse(@PathVariable("httpCode") int httpCode, @RequestBody Excuse excuse) {
+		try {
+			Excuse updatedExcuse = excuseService.updateExcuse(httpCode, excuse);
+			if (updatedExcuse == null) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<>(updatedExcuse, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    // DELETE
-    @DeleteMapping("/{httpCode}")
-    public ResponseEntity<HttpStatus> deleteExcuse(@PathVariable("httpCode") int httpCode) {
-        try {
-            excuseService.deleteExcuseById(httpCode);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	// DELETE
+	@DeleteMapping("/{httpCode}")
+	public ResponseEntity<HttpStatus> deleteExcuse(@PathVariable("httpCode") int httpCode) {
+		try {
+			excuseService.deleteExcuseById(httpCode);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 }

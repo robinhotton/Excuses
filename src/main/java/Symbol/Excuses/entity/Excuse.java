@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Excuse {
-	
+
 	@Id
 	@JsonProperty("http_code")
 	private int httpCode;
@@ -63,7 +63,7 @@ public class Excuse {
 	public int hashCode() {
 		return Objects.hash(this.getHttpCode(), this.getTag(), this.getMessage());
 	}
-	
+
 	@Override
 	public String toString() {
 		return "{\"http_code\": " + httpCode + ", \"tag\": \"" + tag + "\", \"message\": \"" + message + "\"}";
