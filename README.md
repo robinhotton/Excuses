@@ -26,7 +26,6 @@ L'application sera accessible à l'adresse http://localhost:8080.
 Tests
 Les tests de l'application sont écrits avec JUnit et peuvent être exécutés avec la commande suivante:
 
-
 ```bash
 mvn test
 ```
@@ -38,6 +37,16 @@ mvn test
 - H2 Database Engine
 - Maven
 - JUnit
+
+## Plus d'informations
+
+- Base de donnée automatiquement créé grâce à JPA et Hibernate.
+- Les données sont stockées localement dans la mémoire avec h2.
+- Le projet possède un fichier json avec lequel on initialise la base de donnée.
+
+## Problème
+
+La requête HTTP Post écrase l'ancienne donnée s'il ont le même ID.
 
 ## Auteur
 
