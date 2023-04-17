@@ -23,12 +23,14 @@ mvn spring-boot:run
 
 L'application sera accessible à l'adresse http://localhost:8080.
 
-Tests
+## Tests
 Les tests de l'application sont écrits avec JUnit et peuvent être exécutés avec la commande suivante:
 
 ```bash
 mvn test
 ```
+
+J'ai aussi fais des tests de requêtes HTTP avec Postman.
 
 ## Technologies utilisées
 
