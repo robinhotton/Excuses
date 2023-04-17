@@ -17,7 +17,7 @@ public class Excuse {
 
 	@Id
 	@JsonProperty("http_code")
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int httpCode;
 	@Column(nullable = true)
 	private String tag;
