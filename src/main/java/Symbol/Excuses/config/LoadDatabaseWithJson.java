@@ -21,10 +21,10 @@ import Symbol.Excuses.repository.ExcuseRepository;
 
 @Configuration
 public class LoadDatabaseWithJson {
-	
+
 	@Autowired
 	ExcuseRepository repo;
-	
+
 	@Bean
 	CommandLineRunner initDatabase(ExcuseRepository repository) {
 		return args -> {
@@ -35,7 +35,7 @@ public class LoadDatabaseWithJson {
 				try {
 					List<Excuse> excuses = objectMapper.readValue(inputStream, new TypeReference<List<Excuse>>() {
 					});
-					for(Excuse excuse: excuses) {
+					for (Excuse excuse : excuses) {
 						repo.save(excuse);
 					}
 				} catch (IOException e1) {
