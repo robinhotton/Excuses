@@ -4,16 +4,24 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "excuses")
 public class Excuse {
 
 	@Id
 	@JsonProperty("http_code")
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int httpCode;
+	@Column(nullable = true)
 	private String tag;
+	@Column(nullable = true)
 	private String message;
 
 	/**
